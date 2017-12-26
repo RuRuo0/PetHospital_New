@@ -14,6 +14,7 @@ import ph.po.Speciality;
 import ph.po.Vet;
 
 @WebServlet(name = "VetServlet")
+//Vets Management Servlet
 public class VetServlet extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
