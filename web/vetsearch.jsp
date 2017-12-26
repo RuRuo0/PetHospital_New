@@ -32,7 +32,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><a href="VetServlet">添加新医生</a></td>
+                    <td><a href="VetServlet"  title="转到添加新医生页面">添加新医生</a></td>
                 </tr>
                 <tr>
                     <td></td>
