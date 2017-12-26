@@ -114,4 +114,9 @@ public class VetServlet extends HttpServlet
             request.getRequestDispatcher("/vetsearch.jsp").forward(request, response);
         }
     }
+
+    protected void doNothing()
+    {
+
+    }
 }
