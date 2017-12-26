@@ -63,4 +63,9 @@ public class LoginServlet extends HttpServlet
     {
        //do nothing
     }
+
+    protected void doNothing()
+    {
+
+    }
 }
