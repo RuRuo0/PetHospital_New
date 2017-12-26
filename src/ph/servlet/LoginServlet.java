@@ -10,6 +10,7 @@ import java.io.IOException;
 import ph.dao.UserDAO;
 import ph.po.User;
 @WebServlet(name = "LoginServlet")
+//Login Servlet
 public class LoginServlet extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
