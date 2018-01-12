@@ -23,7 +23,7 @@ public class UserDAO
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/ph","root","123456");//  协议://域名(ip):端口/资源（数据库名）
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db_ph","root","root");//  协议://域名(ip):端口/资源（数据库名）
             ps=con.prepareStatement("insert into t_user value(null,?,?,?,?,?)");
             ps.setString(1, user.getRole());
             ps.setString(2, user.getName());
@@ -102,8 +102,7 @@ public class UserDAO
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ph",
-                    "root", "123456");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_ph","root", "root");
             // 1.找符合条件的医生
             ps = con.prepareStatement("select * from t_user where name like ? and role='customer'");
             ps.setString(1, "%" + cname + "%");
@@ -159,7 +158,7 @@ public class UserDAO
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/ph","root","123456");//  协议://域名(ip):端口/资源（数据库名）
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db_ph","root","root");//  协议://域名(ip):端口/资源（数据库名）
             ps=con.prepareStatement("select * from t_user where id=?");
             ps.setInt(1, id);
             rs=ps.executeQuery();
