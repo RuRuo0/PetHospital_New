@@ -19,7 +19,7 @@ public class PetDAO
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ph","root","123456");//  协议://域名(ip):端口/资源（数据库名）
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_ph","root","root");//  协议://域名(ip):端口/资源（数据库名）
             ps = con.prepareStatement("delete from t_pet where id=?");
             ps.setInt(1, petId);
             ps.executeUpdate();
@@ -59,7 +59,7 @@ public class PetDAO
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ph","root","123456");//  协议://域名(ip):端口/资源（数据库名）
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_ph","root","root");//  协议://域名(ip):端口/资源（数据库名）
             ps = con.prepareStatement("insert into t_pet value(null,?,?,?,?)");
             ps.setString(1, pet.getName());
             ps.setString(2, pet.getBirthdate());
@@ -97,14 +97,14 @@ public class PetDAO
      */
     public List<Pet> getPetsByOwnerId(int ownerId) throws Exception
     {
-        List<Pet> pets=new ArrayList<Pet>();
+        List<Pet> pets = new ArrayList<Pet>();
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ph","root","123456");//  协议://域名(ip):端口/资源（数据库名）
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_ph","root","root");//  协议://域名(ip):端口/资源（数据库名）
             ps = con.prepareStatement("select * from t_pet where ownerId=?");
             ps.setInt(1, ownerId);
             rs = ps.executeQuery();
