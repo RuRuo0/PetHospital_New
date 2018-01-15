@@ -39,13 +39,14 @@
             </tr>
             <tr>
                 <td></td>
-                <td><a
-                        href="PetServlet?m=toAdd&cid=<%=user.getId()%>&cname=<%=URLEncoder.encode(user.getName(), "utf-8")%>">添加新宠物</a></td>
+                <td>
+                    <a href="PetServlet?m=toAdd&cid=<%=user.getId()%>&cname=<%=URLEncoder.encode(user.getName(), "utf-8")%>">添加新宠物</a>
+                    <input value="返回" type="button" onclick="history.back(-1)"/>
+                </td>
             </tr>
         </table>
-
-        <h4><%=request.getAttribute("msg") == null ? "" : request.getAttribute("msg")%>
-            <%=request.getParameter("msg") == null ? "" : request.getParameter("msg")%></h4>
+<%--比较request.getAttribute()和request.getAttribute()的区别--%>
+        <h4><%=request.getAttribute("msg") == null ? "" : request.getAttribute("msg")%><%=request.getParameter("msg") == null ? "" : request.getParameter("msg")%></h4>
         <hr>
         <table>
             <tr>
