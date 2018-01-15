@@ -53,7 +53,7 @@
 
                 <tr>
                     <td></td>
-                    <td><input  type="submit" value="保存" /> <input type="reset" value="重置"/></td>
+                    <td><input  type="submit" value="保存" /> <input type="reset" value="重置"/><input value="返回" type="button" onclick="history.back(-1)" /></td>
                 </tr>
             </table>
 
