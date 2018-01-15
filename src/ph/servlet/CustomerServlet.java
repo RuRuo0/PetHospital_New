@@ -32,8 +32,7 @@ public class CustomerServlet extends HttpServlet
 
             // 4将两个查找结果通过request转发到结果页面 customerdetail.jsp
             user.setPets(pets);
-//			request.setAttribute("pets", pets);
-            request.setAttribute("user", user);
+            request.setAttribute("user", user);//Pet是User的属性，已包含在User中传递给了customerdetail.jsp，因此无需单独传递pets
             request.getRequestDispatcher("/customerdetail.jsp").forward(request, response);
         }
         catch (Exception e)
