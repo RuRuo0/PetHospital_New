@@ -24,4 +24,14 @@
         <servlet-name>VetServlet</servlet-name>
         <url-pattern>/VetServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VisitServlet</servlet-name>
+        <servlet-class>ph.servlet.VisitServlet</servlet-class>
+    </servlet>
+    <!--映射Servlet-->
+    <servlet-mapping>
+        <servlet-name>VisitServlet</servlet-name>
+        <url-pattern>/VisitServlet</url-pattern>
+    </servlet-mapping>
     </web-app>
