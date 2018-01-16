@@ -13,7 +13,6 @@ import ph.dao.PetDAO;
 import ph.dao.UserDAO;
 import ph.po.Pet;
 import ph.po.User;
-
 @WebServlet("/CustomerServlet")
 public class CustomerServlet extends HttpServlet
 {
@@ -33,11 +32,18 @@ public class CustomerServlet extends HttpServlet
             // 4将两个查找结果通过request转发到结果页面 customerdetail.jsp
             user.setPets(pets);
             request.setAttribute("user", user);//Pet是User的属性，已包含在User中传递给了customerdetail.jsp，因此无需单独传递pets
+
+            //modified by hlzhang, 20180116
+            String mode = request.getParameter("mode");//获得传递来的mode参数，只有添加宠物成功后，才会有从PetServlet传递来的mode参数
+            if("save".equals(mode))//如果mode的值等于"save"，说明是请求是来自PetServlet添加宠物成功后，再sendRedirect到customerdetail.jsp，才触发了DoGet(0；如果mode的值等于null,说明是请求是来自customerserarch_result.jsp的“查看”链接
+            {
+                request.setAttribute("msg", "添加宠物成功");
+            }
             request.getRequestDispatcher("/customerdetail.jsp").forward(request, response);
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+         e.printStackTrace();
         }
     }
 
