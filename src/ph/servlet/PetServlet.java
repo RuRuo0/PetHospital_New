@@ -76,7 +76,8 @@ public class PetServlet extends HttpServlet
         try
         {
             new PetDAO().save(pet);
-            response.sendRedirect("CustomerServlet?id="+pet.getOwnerId());//这里使用重定向是因为客户查看页面的对应地址是一个get方式的请求地址,且需要一个id值
+            //response.sendRedirect("CustomerServlet?id="+pet.getOwnerId());//这里使用重定向是因为客户查看页面的对应地址是一个get方式的请求地址,且需要一个id值
+            response.sendRedirect("CustomerServlet?id="+pet.getOwnerId()+"&mode=save");//用一个mode参数，表示是否是save了一个新宠物,by hlzhang
         }
         catch (Exception e)
         {
