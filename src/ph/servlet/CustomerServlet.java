@@ -63,12 +63,21 @@ public class CustomerServlet extends HttpServlet
 
     private void save(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        //add by hlzhang, 20180106
+        String name = request.getParameter("name");
+        if("".equals(name))//客户姓名不能为空
+        {
+            request.setAttribute("msg", "请输入客户姓名");
+			request.getRequestDispatcher("/customeradd.jsp").forward(request, response);//这里可以直接转发到 customeradd.jsp
+        }
+
         User user=new User();
         user.setName(request.getParameter("name"));
         user.setAddress(request.getParameter("address"));
         user.setTel(request.getParameter("tel"));
         user.setRole("customer");
         user.setPwd("123456");
+
         try
         {
             new UserDAO().save(user);
