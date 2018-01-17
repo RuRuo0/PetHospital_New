@@ -20,48 +20,38 @@ public class CustomerServlet extends HttpServlet
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        try
+        //modified by hlzhang, 20180116
+        String mode = request.getParameter("mode");//获得传递来的mode参数，只有添加宠物成功后，才会有从PetServlet传递来的mode参数
+        if("savePet".equals(mode))//如果mode的值等于"savePet"，说明是请求是来自PetServlet添加宠物成功后，再sendRedirect到customerdetail.jsp，才触发了DoGet(0；
         {
-            // 1 得到超链接里面的主人id
-            int id = Integer.parseInt(request.getParameter("id"));
-            // 2 根据主人id查找UserDAO.getById()
-            User user = new UserDAO().getById(id);
-            // 3根据主人id查找PetDAO.getPetsByOwnerId()
-            List<Pet> pets = new PetDAO().getPetsByOwnerId(id);
-
-            // 4将两个查找结果通过request转发到结果页面 customerdetail.jsp
-            user.setPets(pets);
-            request.setAttribute("user", user);//Pet是User的属性，已包含在User中传递给了customerdetail.jsp，因此无需单独传递pets
-
-            //modified by hlzhang, 20180116
-            String mode = request.getParameter("mode");//获得传递来的mode参数，只有添加宠物成功后，才会有从PetServlet传递来的mode参数
-            if("save".equals(mode))//如果mode的值等于"save"，说明是请求是来自PetServlet添加宠物成功后，再sendRedirect到customerdetail.jsp，才触发了DoGet(0；如果mode的值等于null,说明是请求是来自customerserarch_result.jsp的“查看”链接
-            {
-                request.setAttribute("msg", "添加宠物成功");
-            }
-            request.getRequestDispatcher("/customerdetail.jsp").forward(request, response);
+            savePet(request, response);
         }
-        catch (Exception e)
+        else if("saveVisit".equals(mode))//如果mode的值等于"saveVisit"，说明是请求是来自VisitServlet添加病历成功后，再sendRedirect到customerdetail.jsp
         {
-         e.printStackTrace();
+            saveVisit(request, response);
         }
+        else//如果mode的值等于null,说明是请求是来自customerserarch_result.jsp的“查看明细”链接
+        {
+            showDetail(request, response);
+        }
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         String m=request.getParameter("m");
-        if("search".equals(m))
+        if("search".equals(m))//查询已有客户，来自于customersearch.jsp提交的表单
         {
-            search(request, response);
+            searchCustomer(request, response);
         }
-        else if("save".equals(m))
+        else if("save".equals(m))//保存新的客户，来自于customeradd.jsp提交的表单
         {
-            save(request, response);
+            saveCustomer(request, response);
         }
     }
 
-    private void save(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    private void saveCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         //add by hlzhang, 20180106
         String name = request.getParameter("name");
@@ -81,7 +71,7 @@ public class CustomerServlet extends HttpServlet
         try
         {
             new UserDAO().save(user);
-            request.setAttribute("msg", "添加成功");
+            request.setAttribute("msg", "添加客户成功");
             request.getRequestDispatcher("/customersearch.jsp").forward(request, response);
         }
         catch (Exception e)
@@ -91,7 +81,7 @@ public class CustomerServlet extends HttpServlet
         }
     }
 
-    private void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    private void searchCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         try
         {
@@ -107,6 +97,66 @@ public class CustomerServlet extends HttpServlet
                 request.setAttribute("users", users);
                 request.getRequestDispatcher("/customersearch_result.jsp").forward(request, response);
             }
+        }
+        catch (Exception e)
+        {
+            request.setAttribute("msg", e.getMessage());
+            request.getRequestDispatcher("/customersearch.jsp").forward(request, response);
+        }
+    }
+
+    private void saveVisit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        try
+        {
+            UserDAO userDAO = new UserDAO();
+            PetDAO petDAO = new PetDAO();
+            int ownerId = Integer.valueOf(request.getParameter("cid"));//得到VisitServlet的添加病历成功后，sendRedirect到ctomerdetail.jsp所得到的主人id
+            User user = userDAO.getById(ownerId);
+            List<Pet> pets = petDAO.getPetsByOwnerId(ownerId);
+            user.setPets(pets);
+            request.setAttribute("user", user);
+            request.setAttribute("msg", "添加病历成功");
+            request.getRequestDispatcher("/customerdetail.jsp").forward(request, response);
+        }
+        catch (Exception e)
+        {
+            request.setAttribute("msg", e.getMessage());
+            request.getRequestDispatcher("/customersearch.jsp").forward(request, response);
+        }
+    }
+
+    private void savePet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        try
+        {
+            int id = Integer.parseInt(request.getParameter("id"));//1得到petServlet的添加宠物成功后，sendRedirect到ctomerdetail.jsp所得到的主人id
+            User user = new UserDAO().getById(id); //2根据主人id查找UserDAO.getById()
+            List<Pet> pets = new PetDAO().getPetsByOwnerId(id);//3根据主人id查找PetDAO.getPetsByOwnerId()
+            user.setPets(pets);//4将两个查找结果通过request转发到结果页面customerdetail.jsp
+            request.setAttribute("user", user);//Pet是User的属性，已包含在User中传递给了customerdetail.jsp，因此无需单独传递pets参数
+            request.setAttribute("msg", "添加宠物成功");
+            request.getRequestDispatcher("/customerdetail.jsp").forward(request, response);
+        }
+        catch (Exception e)
+        {
+            request.setAttribute("msg", e.getMessage());
+            request.getRequestDispatcher("/customersearch.jsp").forward(request, response);
+        }
+    }
+
+    private void showDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        try
+        {
+            UserDAO userDAO = new UserDAO();
+            PetDAO petDAO = new PetDAO();
+            int ownerId = Integer.valueOf(request.getParameter("id"));//得到customersearch_resultl.jsp的“查看明细”链接发送来的参数客户id
+            User user = userDAO.getById(ownerId);
+            List<Pet> pets = petDAO.getPetsByOwnerId(ownerId);
+            user.setPets(pets);
+            request.setAttribute("user", user);
+            request.getRequestDispatcher("/customerdetail.jsp").forward(request, response);
         }
         catch (Exception e)
         {
