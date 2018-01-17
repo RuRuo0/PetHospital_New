@@ -28,9 +28,10 @@
                 <tr>
                     <td>宠物姓名</td>
                     <td>
-                        <input name="pname" value="<%=request.getParameter("pname")%>"  disabled="disabled"/>
-                        <input type="hidden" name="cid" value="<%=request.getParameter("cid")%>" />
-                        <input type="hidden" name="pid" value="<%=request.getParameter("pid")%>" />
+                        <%--petName, customerId和petId，这三个参数都来自customerdetail.jsp的添加病历链接--%>
+                        <input name="pname" value="<%=request.getParameter("petName")%>"  disabled="disabled"/>
+                        <input type="hidden" name="cid" value="<%=request.getParameter("customerId")%>" />
+                        <input type="hidden" name="pid" value="<%=request.getParameter("petId")%>" />
                     </td>
                 </tr>
                 <tr>
@@ -39,8 +40,10 @@
                         <select name="vid" style="width: 152px;">
                         <%
                             List<Vet> vets = (List<Vet>) request.getAttribute("vets");
-                            if (vets != null) {
-                                for (Vet vet : vets) {
+                            if (vets != null)
+                            {
+                                for (Vet vet : vets)
+                                {
                         %>
                         <option value="<%=vet.getId()%>"><%=vet.getName()%></option>
                         <%

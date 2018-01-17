@@ -32,7 +32,7 @@
             <tr class="result">
                 <td><%=user.getName()%></td>
                 <td>
-                    <a href="CustomerServlet?id=<%=user.getId() %>">查看</a>
+                    <a href="CustomerServlet?id=<%=user.getId() %>">查看明细</a>
                 </td>
             </tr>
             <%

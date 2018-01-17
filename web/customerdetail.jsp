@@ -63,7 +63,7 @@
                 </td>
                 <td class="minWidth"><a
                         href="PetServlet?m=delete&pid=<%=pet.getId()%>&cid=<%=user.getId()%>">删除</a>|<a
-                        href="VisitServlet?cid=<%=user.getId()%>&pid=<%=pet.getId()%>&pname=<%=URLEncoder.encode(pet.getName(), "UTF-8")%>">添加病例</a>|<a
+                        href="VisitServlet?m=toAdd&customerId=<%=user.getId()%>&petId=<%=pet.getId()%>&petName=<%=URLEncoder.encode(pet.getName(), "UTF-8")%>">添加病例</a>|<a
                         href="">浏览病例</a></td>
             </tr>
             <%
