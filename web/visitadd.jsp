@@ -67,7 +67,8 @@
                     <td></td>
                     <td>
                         <input type="submit" value="保存" />
-                        <input type="reset" value="重置" />
+                        <input type="reset" value="清空" />
+                        <input value="取消" type="button" onclick="location.href='customersearch.jsp'" />
                     </td>
                 </tr>
             </table>
