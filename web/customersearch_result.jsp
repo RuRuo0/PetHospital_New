@@ -40,7 +40,7 @@
             %>
             <tr>
                 <td></td>
-                <td><input value="返回" type="button" onclick="javascrtpt:window.location.href='customersearch.jsp'" /></td>
+                <td><input value="返回" type="button" onclick="location.href='customersearch.jsp'" /></td>
             </tr>
         </table>
 
