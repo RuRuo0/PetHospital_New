@@ -33,7 +33,7 @@
             </tr>
                 <tr>
                     <td></td>
-                    <td><input  type="submit" value="保存" /> <input type="reset" value="清空"/><input value="返回" type="button" onclick="history.back(-1)" /></td>
+                    <td><input  type="submit" value="保存" /> <input type="reset" value="清空"/><input value="取消" type="button" onclick="javascrtpt:window.location.href='customersearch.jsp'" /></td>
                 </tr>
             </table>
         </form>
