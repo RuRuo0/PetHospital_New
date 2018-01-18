@@ -33,7 +33,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input  type="submit" value="查询" /> <input type="reset" value="重置"/></td>
+                    <td><input  type="submit" value="查询" /> <input type="reset" value="清空"/></td>
                 </tr>
             </table>
 
