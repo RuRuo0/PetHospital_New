@@ -42,7 +42,7 @@
                 <td>
                     <a href="PetServlet?m=toAdd&cid=<%=user.getId()%>&cname=<%=URLEncoder.encode(user.getName(), "utf-8")%>">添加新宠物</a>
                     <%--<input value="返回" type="button" onclick="history.back(-1)"/用history.back不合理，导致如果在添加宠物页面保存宠物成功并跳转到本页后，又返回了添加宠物页面，改为指定跳转到客户查询页 --%>
-                    <input value="返回" type="button" onclick="javascrtpt:window.location.href='customersearch.jsp'"/>
+                    <input value="返回" type="button" onclick="location.href='customersearch.jsp'"/>
 
                 </td>
             </tr>
