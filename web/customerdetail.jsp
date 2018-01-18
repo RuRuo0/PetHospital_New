@@ -46,7 +46,7 @@
             </tr>
         </table>
 <%--比较request.getAttribute()和request.getAttribute()的区别--%>
-        <h4><%=request.getAttribute("msg") == null ? "" : request.getAttribute("msg")%><%=request.getParameter("msg") == null ? "" : request.getParameter("msg")%></h4>
+        <h4 align="center" style="color:yellow"><%=request.getAttribute("msg") == null ? "" : request.getAttribute("msg")%><%=request.getParameter("msg") == null ? "" : request.getParameter("msg")%></h4>
         <hr>
         <table>
             <tr>
