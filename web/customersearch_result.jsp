@@ -14,7 +14,20 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>客户查询结果页面</title>
-    <link href="styles.css" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet"/>
+    <SCRIPT type="text/javascript">
+        function confirmDialog()
+        {
+            if(confirm("确定要删除该宠物信息吗?"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    </SCRIPT>
 </head>
 <body>
     <div>
@@ -22,8 +35,10 @@
         <div id="main">
         <table>
             <tr>
-                <td>客户姓名</td>
-                <td>操作</td>
+                <td align="center">客户姓名</td>
+                <td align="center">客户电话</td>
+                <td align="center">客户地址</td>
+                <td align="center">客户管理</td>
             </tr>
             <%
                 List<User> users = (List<User>) request.getAttribute("users");
@@ -31,8 +46,11 @@
             %>
             <tr class="result">
                 <td><%=user.getName()%></td>
+                <td><%=user.getTel()%></td>
+                <td><%=user.getAddress()%></td>
                 <td>
-                    <a href="CustomerServlet?id=<%=user.getId() %>">查看明细</a>
+                    <a href="CustomerServlet?id=<%=user.getId() %>">查看</a>
+                    <a href="CustomerServlet?mode=delete&cid=<%=user.getId()%>" onclick=" return confirmDialog();">删除</a>
                 </td>
             </tr>
             <%

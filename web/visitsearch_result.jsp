@@ -29,10 +29,10 @@
             <table class="wide">
                 <thead>
                     <tr>
-                        <td width="120">医师</td>
-                     <td width="120">时间</td>
-                        <td>病情描述</td>
-                        <td>治疗方案</td>
+                        <td width="120">主治医生</td>
+                        <td width="120">治疗时间</td>
+                        <td width="200">病情描述</td>
+                        <td width="200">治疗方案</td>
                     </tr>
                 </thead>
             <%
