@@ -14,6 +14,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>客户详细信息页面</title>
     <link href="styles.css" rel="stylesheet" />
+    <SCRIPT type="text/javascript">
+        function confirmDialog()
+        {
+            if(confirm("确定要删除该宠物信息吗?"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    </SCRIPT>
 </head>
 <body>
    <div>
@@ -63,10 +76,10 @@
                 <td><img src="<%=pet.getPhoto()%>" width="48px" height="48px"></td>
                 <td class="minWidth">姓名:<%=pet.getName()%>，生日:<%=pet.getBirthdate()%>
                 </td>
-                <td class="minWidth"><a
-                        href="PetServlet?m=delete&pid=<%=pet.getId()%>&cid=<%=user.getId()%>">删除</a>|<a
-                        href="VisitServlet?m=toAdd&customerId=<%=user.getId()%>&petId=<%=pet.getId()%>&petName=<%=URLEncoder.encode(pet.getName(), "UTF-8")%>">添加病例</a>|<a
-                        href="">浏览病例</a></td>
+                <td class="minWidth">
+                    <a href="PetServlet?m=delete&pid=<%=pet.getId()%>&cid=<%=user.getId()%>" onclick=" return confirmDialog();">删除</a>|
+                    <a href="VisitServlet?m=toAdd&customerId=<%=user.getId()%>&petId=<%=pet.getId()%>&petName=<%=URLEncoder.encode(pet.getName(), "UTF-8")%>">添加病例</a>|
+                    <a href="">浏览病例</a></td>
             </tr>
             <%
                 }
