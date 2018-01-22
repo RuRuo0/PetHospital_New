@@ -77,8 +77,8 @@ public class VisitServlet extends HttpServlet
     {
         try
         {
-            VisitDAO vistDAO = new VisitDAO();
-            List<Visit> visits = vistDAO.getVisitsByPetId(Integer.parseInt(request.getParameter("petId")));
+            VisitDAO visitDAO = new VisitDAO();
+            List<Visit> visits = visitDAO.getVisitsByPetId(Integer.parseInt(request.getParameter("petId")));
             request.setAttribute("visits", visits);
             if (visits.size() == 0)
             {

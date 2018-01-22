@@ -49,6 +49,14 @@ public class PetServlet extends HttpServlet
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        //add by hlzhang, 20180122
+        String name = request.getParameter("name");
+        if("".equals(name))//宠物姓名不能为空
+        {
+            request.setAttribute("msg", "请输入宠物姓名");
+            request.getRequestDispatcher("/petadd.jsp").forward(request, response);//这里可以直接转发到 petadd.jsp
+            return;// petadd.jsp后，函数直接返回，add by hlzhang, 20180122
+        }
         Part p = request.getPart("photo");
         String oldname = getFileName(p);
         //这里需要上传文件，就需要得到上传文件的目标路径
