@@ -20,15 +20,19 @@ public class VetServlet extends HttpServlet
     private static final long serialVersionUID = 1L;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        //doPost方法会被多个表单调用  查询医生  保存医生  因此这里需要根据不同表单传递的标示参数调用不同的方法
+        //doPost方法会被多个表单调用 ,查询医生,增加医生,增加专业  因此这里需要根据不同表单传递的标示参数调用不同的方法
         String m = request.getParameter("m");
         if("search".equals(m))
         {
             search(request, response);
         }
-        else if("save".equals(m))
+        else if("addVet".equals(m))
         {
-            save(request, response);
+            addVet(request, response);
+        }
+        else if("addSpec".equals(m))
+        {
+            addSpec(request, response);
         }
 
     }
@@ -37,8 +41,21 @@ public class VetServlet extends HttpServlet
     {
         try
         {
-            request.setAttribute("specs", new SpecialityDAO().getAll());
-            request.getRequestDispatcher("/vetadd.jsp").forward(request, response);
+            //modified by hlzhang, 20180130
+            String mode = request.getParameter("mode");//获得从vetsearch.jsp的超链接传递来的mode参数
+            if("newVet".equals(mode))
+            {
+                request.setAttribute("specs", new SpecialityDAO().getAll());
+                request.getRequestDispatcher("/vetadd.jsp").forward(request, response);
+            }
+            else if("newSpec".equals(mode))
+            {
+                request.getRequestDispatcher("/specialityAdd.jsp").forward(request, response);
+            }
+            else
+            {
+                request.getRequestDispatcher("/vetsearch.jsp").forward(request, response);
+            }
         }
         catch (Exception e)
         {
@@ -47,7 +64,7 @@ public class VetServlet extends HttpServlet
         }
     }
 
-    private void save(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException
+    private void addVet(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException
     {
         //这里需要根据表单封装一个Vet   表单里有医生名  专业id下拉列表
         Vet vet=new Vet();
@@ -78,6 +95,35 @@ public class VetServlet extends HttpServlet
             try
             {
                 new VetDAO().save(vet);
+                request.setAttribute("msg", "添加成功");
+                request.getRequestDispatcher("/vetsearch.jsp").forward(request, response);
+            }
+            catch (Exception e)
+            {
+                request.setAttribute("msg",e.getMessage());
+                doGet(request,response);
+            }
+        }
+
+    }
+
+    private void addSpec(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException
+    {
+        Speciality spec = new Speciality();
+        String specName = request.getParameter("specName");
+        String specDesc = request.getParameter("specDesc");
+        if("".equals(specName))
+        {
+            request.setAttribute("msg", "请输入专业名称");
+		    request.getRequestDispatcher("/specialityAdd.jsp").forward(request, response);
+        }
+        else
+        {
+            spec.setName(specName);
+            spec.setDesc(specDesc);
+            try
+            {
+                new SpecialityDAO().save(spec);
                 request.setAttribute("msg", "添加成功");
                 request.getRequestDispatcher("/vetsearch.jsp").forward(request, response);
             }
