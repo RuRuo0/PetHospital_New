@@ -7,6 +7,7 @@ public class Pet
     private String birthdate;
     private String  photo;
     private int ownerId;
+    private String  ownerName;//add by hlzhang, 2010130
     public int getId() {
         return id;
     }
@@ -36,6 +37,12 @@ public class Pet
     }
     public void setOwnerId(int ownerId) {
         this.ownerId = ownerId;
+    }
+    public String getOwnerName() {
+        return ownerName;
+    }
+    public void setOwnerName(String name) {
+        this.ownerName = name;
     }
 
 }
