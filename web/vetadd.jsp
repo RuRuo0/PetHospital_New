@@ -23,7 +23,7 @@
     </div>
     <div id="main">
         <form action="VetServlet" method="post">
-            <input type="hidden" name="m" value="save">
+            <input type="hidden" name="m" value="addVet">
             <table>
                 <tr>
                     <td>医生姓名</td>
