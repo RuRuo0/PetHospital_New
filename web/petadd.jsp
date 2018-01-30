@@ -21,7 +21,7 @@
     </div>
     <div id="main">
         <form action="PetServlet" method="post" enctype="multipart/form-data"> <!-- 文件上传  要修改表单的enctype属性 -->
-            <input type="hidden" name="m" value="save">
+            <input type="hidden" name="m" value="addPet">
             <table>
                 <tr>
                     <td>客户姓名</td>
