@@ -4,4 +4,6 @@
     <ul class="menu">
     <li><a href="vetsearch.jsp">医生管理</a></li>
     <li><a href="customersearch.jsp">客户管理</a></li>
+    <li><a href="petSearch.jsp">宠物管理</a></li>
+    <li><a href="">就诊管理</a></li>
 </ul>
