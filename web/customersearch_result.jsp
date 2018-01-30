@@ -18,7 +18,7 @@
     <SCRIPT type="text/javascript">
         function confirmDialog()
         {
-            if(confirm("确定要删除该宠物信息吗?"))
+            if(confirm("确定要删除该客户信息吗?"))
             {
                 return true;
             }
