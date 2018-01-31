@@ -42,11 +42,17 @@ public class VetServlet extends HttpServlet
         try
         {
             //modified by hlzhang, 20180130
-            String mode = request.getParameter("mode");//获得从vetsearch.jsp的超链接传递来的mode参数
+            String mode = request.getParameter("mode");//获得从vetsearch.jsp或vetsearch_result.jsp的超链接传递来的mode参数
             if("newVet".equals(mode))
             {
                 request.setAttribute("specs", new SpecialityDAO().getAll());
                 request.getRequestDispatcher("/vetadd.jsp").forward(request, response);
+            }
+            else if("deleteVet".equals(mode))
+            {
+                new VetDAO().delete(Integer.parseInt(request.getParameter("vetId")));
+                request.setAttribute("msg", "成功删除医生："+request.getParameter("vetName"));
+                request.getRequestDispatcher("/vetsearch.jsp").forward(request, response);
             }
             else if("newSpec".equals(mode))
             {
