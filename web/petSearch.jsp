@@ -31,11 +31,11 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input  type="submit" value="查询" /> <input type="reset" value="清空"/><a href=""  title="转到添加新宠物页面">添加新宠物</a></td>
+                    <td><input  type="submit" value="查询" /> <input type="reset" value="清空"/><a href="PetServlet?m=newPetAdd"  title="转到添加新宠物页面">添加新宠物</a></td>
                 </tr>
             </table>
         </form>
-        <h4><%=request.getAttribute("msg")==null?"":request.getAttribute("msg") %></h4>
+        <h4 align="center" style="color:red" ><%=request.getAttribute("msg")==null?"":request.getAttribute("msg") %></h4>
     </div>
     <div id="footer">
 
