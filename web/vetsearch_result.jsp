@@ -15,6 +15,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>医生查询页面</title>
     <link href="styles.css" rel="stylesheet" />
+    <SCRIPT type="text/javascript">
+        function confirmDialog()
+        {
+            if(confirm("确定要删除该宠物信息吗?"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    </SCRIPT>
 </head>
 <body>
 <div>
@@ -30,19 +43,20 @@
 
             <%
                 List<Vet> vets = (List<Vet>) request.getAttribute("vets");
-                for (Vet v : vets) {
+                for (Vet vet : vets) {
             %>
             <tr class="result">
-                <td><%=v.getName()%></td>
+                <td><%=vet.getName()%></td>
                 <td>
                     <%
-                        for(Speciality s:v.getSpecs()){
+                        for(Speciality spec:vet.getSpecs()){
                     %>
-                    <span><%=s.getName() %></span>
+                    <span><%=spec.getName()%></span>
                     <%
                         }
                     %>
                 </td>
+                <td><a href="VetServlet?mode=deleteVet&vetId=<%=vet.getId()%>&vetName=<%=vet.getName()%>" onclick=" return confirmDialog();">删除</a></td>
             </tr>
             <%
                 }
@@ -54,8 +68,7 @@
             </tr>
         </table>
 
-        <h4><%=request.getAttribute("msg") == null ? "" : request
-                .getAttribute("msg")%></h4>
+        <h4 align="center" style="color:red"><%=request.getAttribute("msg") == null ? "" : request.getAttribute("msg")%></h4>
     </div>
     <div id="footer"></div>
 </div>
