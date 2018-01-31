@@ -45,11 +45,9 @@
             <tr class="result">
                 <td><%=pet.getName()%></td>
                 <td><%=pet.getBirthdate()%></td>
-                <td><img src="<%=pet.getPhoto()%>" width="48px" height="48px"></td>
+                <td><img src="<%=pet.getPhoto()%>" width="50px" height="50px"></td>
                 <td><%=pet.getOwnerName()%></td>
-                <td>
-                    <a href="" onclick=" return confirmDialog();">删除</a>
-                </td>
+                <td><a href="PetServlet?m=deletePet&petId=<%=pet.getId()%>&petName=<%=pet.getName()%>" onclick=" return confirmDialog();">删除</a></td>
             </tr>
             <%
                 }
@@ -60,7 +58,7 @@
             </tr>
         </table>
 
-        <h4><%=request.getAttribute("msg") == null ? "" : request.getAttribute("msg")%></h4>
+        <h4 align="center" style="color:red"><%=request.getAttribute("msg") == null ? "" : request.getAttribute("msg")%></h4>
     </div>
     <div id="footer"></div>
 </div>
