@@ -116,10 +116,6 @@ public class UserDAO
 
                 users.add(user);
             }
-
-
-
-
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             throw new Exception("找不到驱动:" + e.getMessage());
@@ -136,6 +132,11 @@ public class UserDAO
         }
 
         return users;
+    }
+
+    public List<User> getAllCustomer() throws Exception
+    {
+        return searchCustomer("");
     }
 
     /**
