@@ -13,6 +13,20 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>新宠物添加页面</title>
     <link href="styles.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function preview(source)//上传图片到服务器之前，先实现图片预览，add by hlzhang, 20180202
+        {
+            var file = source.files[0];
+            if(window.FileReader)
+            {
+                var fr = new FileReader();
+                var portrait = document.getElementById('portrait');
+                fr.onloadend = function(e){ portrait.src = e.target.result; };
+                fr.readAsDataURL(file);
+                portrait.style.display = 'block';
+            }
+        }
+    </script>
 </head>
 <body>
 <div>
@@ -42,7 +56,7 @@
                         </select>
                     </td>
                 <tr>
-                    <td>宠物姓名</td>
+                    <td>宠物名字</td>
                     <td><input name="name" /></td>
                 </tr>
                 <tr>
@@ -51,11 +65,15 @@
                 </tr>
                 <tr>
                     <td>宠物照片</td>
-                    <td><input name="photo" type="file" /></td>
+                    <td><input name="photo" type="file" accept="image/*" onchange="preview(this)"/></td>
+                </tr>
+                <tr>
+                    <td>照片预览</td>
+                    <td><img id="portrait" src="" style="display:none;" width="200px" height="200px"/></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" value="保存"/> <input type="reset" value="清空"/><input value="取消" type="button" onclick="location.href='petSearch.jsp'"/></td>
+                    <td><input type="submit" value="保存"/> <input type="reset" value="清空" onclick="document.getElementById('portrait').style.display = 'none';"/><input value="取消" type="button" onclick="location.href='petSearch.jsp'"/></td>
                 </tr>
             </table>
         </form>

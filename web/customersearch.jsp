@@ -24,16 +24,11 @@
             <table>
                 <tr>
                     <td>客户姓名</td>
-                    <td><input  name="cname"/></td>
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td><a href="customeradd.jsp">添加新客户</a></td>
+                    <td><input  name="cname" title="按客户姓名查询"/></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input  type="submit" value="查询" /> <input type="reset" value="清空"/></td>
+                    <td><input  type="submit" value="查询" /> <input type="reset" value="清空"/><a href="customeradd.jsp">添加新客户</a></td>
                 </tr>
             </table>
 

@@ -23,12 +23,12 @@
             <!-- type="hidden"  隐藏表单控件  用来传递值  这个控件在前台页面不显示 -->
             <table>
                 <tr>
-                    <td>姓名</td>
-                    <td><input  name="vname"/></td>
+                    <td>医生姓名</td>
+                    <td><input  name="vname" title="按医生姓名查询"/></td>
                 </tr>
                 <tr>
-                    <td>专业</td>
-                    <td><input  name="sname"/></td>
+                    <td>所属专业</td>
+                    <td><input  name="sname" title="按所属专业查询"/></td>
                 </tr>
                 <tr>
                     <td></td>

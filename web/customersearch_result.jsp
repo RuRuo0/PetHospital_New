@@ -38,7 +38,6 @@
                 <td align="center">客户姓名</td>
                 <td align="center">客户电话</td>
                 <td align="center">客户地址</td>
-                <td align="center">客户管理</td>
             </tr>
             <%
                 List<User> users = (List<User>) request.getAttribute("users");
@@ -48,10 +47,8 @@
                 <td><%=user.getName()%></td>
                 <td><%=user.getTel()%></td>
                 <td><%=user.getAddress()%></td>
-                <td>
-                    <a href="CustomerServlet?id=<%=user.getId() %>">查看</a>
-                    <a href="CustomerServlet?mode=delete&cid=<%=user.getId()%>" onclick=" return confirmDialog();">删除</a>
-                </td>
+                <td><a href="CustomerServlet?id=<%=user.getId() %>">查看</a></td>
+                <td><a href="CustomerServlet?mode=delete&cid=<%=user.getId()%>" onclick=" return confirmDialog();">删除</a></td>
             </tr>
             <%
                 }
