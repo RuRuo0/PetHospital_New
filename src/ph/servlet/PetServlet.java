@@ -194,7 +194,7 @@ public class PetServlet extends HttpServlet
                 List<User> users = userDAO.getAllCustomer();
                 request.setAttribute("users", users);
                 request.setAttribute("msg", "请输入宠物姓名");
-                request.getRequestDispatcher("/newPetAdd.jsp").forward(request, response);//这里可以直接转发到 petadd.jsp
+                request.getRequestDispatcher("/newPetAdd.jsp").forward(request, response);//这里可以直接转发到 newPetAdd.jsp
             }
             catch (Exception e)
             {

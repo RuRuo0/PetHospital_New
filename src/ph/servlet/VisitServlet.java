@@ -69,7 +69,7 @@ public class VisitServlet extends HttpServlet
         catch (Exception e)
         {
             request.setAttribute("msg", e.getMessage());
-            showHistory(request, response);
+            request.getRequestDispatcher("/customersearch.jsp").forward(request, response);
         }
     }
 
