@@ -26,7 +26,7 @@
 <body>
 <div>
   <div id="header">
-    <h1>社区宠物诊所</h1>
+    <h1>社区宠物医院</h1>
   </div>
   <div id="main">
     <form action="LoginServlet" method="post">
@@ -59,7 +59,7 @@
       <%=request.getParameter("para")==null?"":request.getParameter("para") %></h4>
   </div>
   <div id="footer">
-
+    <%@ include  file="inc/footer.inc"%>
   </div>
 </div>
 </body>

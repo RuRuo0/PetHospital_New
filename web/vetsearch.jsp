@@ -39,7 +39,7 @@
         <h4><%=request.getAttribute("msg")==null?"":request.getAttribute("msg") %></h4>
     </div>
     <div id="footer">
-
+        <%@ include  file="inc/footer.inc"%>
     </div>
 </div>
 </body>
